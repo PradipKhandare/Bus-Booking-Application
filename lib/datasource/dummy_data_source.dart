@@ -1,6 +1,3 @@
-
-
-
 import 'package:bus_reservation_udemy/datasource/data_source.dart';
 import 'package:bus_reservation_udemy/datasource/temp_db.dart';
 import 'package:bus_reservation_udemy/models/app_user.dart';
@@ -11,8 +8,7 @@ import 'package:bus_reservation_udemy/models/bus_schedule.dart';
 import 'package:bus_reservation_udemy/models/but_route.dart';
 import 'package:bus_reservation_udemy/models/response_model.dart';
 
-class DummyDataSource extends DataSource
-{
+class DummyDataSource extends DataSource {
   @override
   Future<ResponseModel> addBus(Bus bus) {
     // TODO: implement addBus
@@ -68,19 +64,21 @@ class DummyDataSource extends DataSource
   }
 
   @override
-  Future<List<BusReservation>> getReservationsByScheduleAndDepartureDate(int scheduleId, String departureDate) {
+  Future<List<BusReservation>> getReservationsByScheduleAndDepartureDate(
+      int scheduleId, String departureDate) {
     // TODO: implement getReservationsByScheduleAndDepartureDate
     throw UnimplementedError();
   }
 
   @override
-  Future<BusRoute?> getRouteByCityFromAndCityTo(String cityFrom, String cityTo) async{
+  Future<BusRoute?> getRouteByCityFromAndCityTo(
+      String cityFrom, String cityTo) async {
     BusRoute? route;
     try {
-       route = TempDB.tableRoute.firstWhere((element) =>
-      element.cityFrom == cityFrom && element.cityTo == cityTo);
+      route = TempDB.tableRoute.firstWhere((element) =>
+          element.cityFrom == cityFrom && element.cityTo == cityTo);
       return route;
-    } on StateError catch(error) {
+    } on StateError catch (error) {
       return null;
     }
   }
@@ -92,9 +90,10 @@ class DummyDataSource extends DataSource
   }
 
   @override
-  Future<List<BusSchedule>> getSchedulesByRouteName(String routeName) {
-    // TODO: implement getSchedulesByRouteName
-    throw UnimplementedError();
+  Future<List<BusSchedule>> getSchedulesByRouteName(String routeName) async {
+    return TempDB.tableSchedule
+        .where((schedule) => schedule.busRoute.routeName == routeName)
+        .toList();
   }
 
   @override
@@ -102,5 +101,4 @@ class DummyDataSource extends DataSource
     // TODO: implement login
     throw UnimplementedError();
   }
-  
 }
