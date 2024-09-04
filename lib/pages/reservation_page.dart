@@ -2,6 +2,8 @@ import 'package:bus_reservation_udemy/custom_widgets/reservation_item_body_view.
 import 'package:bus_reservation_udemy/custom_widgets/reservation_item_header_view.dart';
 import 'package:bus_reservation_udemy/custom_widgets/search_box.dart';
 import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
+import 'package:bus_reservation_udemy/utils/colors.dart';
+import 'package:bus_reservation_udemy/utils/fonts.dart';
 import 'package:bus_reservation_udemy/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -39,8 +41,18 @@ class _ReservationPageState extends State<ReservationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: buttonColor,
       appBar: AppBar(
-        title: const Text('Reservation List'),
+        backgroundColor: Colors.transparent,
+        title: const Text(
+          'Your Bookings',
+          style: TextStyle(
+            fontFamily: Fonts.fontFamily,
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 22,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

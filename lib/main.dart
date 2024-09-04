@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
-        brightness: Brightness.dark,
+       // brightness: Brightness.dark,
       ),
       //home: const SearchPage(),
       initialRoute: routeNameHome,

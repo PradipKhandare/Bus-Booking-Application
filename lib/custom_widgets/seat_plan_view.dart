@@ -41,7 +41,7 @@ class SeatPlanView extends StatelessWidget {
       width: MediaQuery.of(context).size.width * 0.80,
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(18),
         border: Border.all(color: Colors.grey, width: 2),
       ),
 

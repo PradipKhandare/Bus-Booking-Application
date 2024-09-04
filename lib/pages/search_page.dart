@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:bus_reservation_udemy/datasource/temp_db.dart';
 import 'package:bus_reservation_udemy/drawer/main_drawer.dart';
 import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
@@ -24,142 +26,211 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: buttonColor,
       drawer: MainDrawer(),
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: const Text(
-          "Search Buses",
+          "Find Your Bus",
           style: TextStyle(
-            fontFamily: Fonts.fontFamily,
-          ),
+              fontFamily: Fonts.fontFamily,
+              fontSize: 22,
+              color: Colors.white,
+              fontWeight: FontWeight.w600),
         ),
       ),
       body: Form(
         key: _formKey,
-        child: Center(
-          child: ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(8),
-            children: [
-              Image.asset(
-                "assets/img/pngegg.png",
-                height: 100,
-                width: 150,
+        child: Column(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              child: Image.asset(
+                "assets/img/bus.png",
+                height: 250,
+                fit: BoxFit.fill,
               ),
-              DropdownButtonFormField<String>(
-                value: fromCity,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return emptyFieldErrMessage;
-                  } else {
-                    return null;
-                  }
-                },
-                decoration: const InputDecoration(
-                  errorStyle: TextStyle(
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              child: Center(
+                child: Container(
+                  height: MediaQuery.of(context).size.height / 2,
+                  decoration: BoxDecoration(
                     color: Colors.white,
+                    borderRadius: BorderRadius.circular(
+                      15,
+                    ),
                   ),
-                ),
-                hint: const Text(
-                  "From",
-                  style: TextStyle(fontFamily: Fonts.fontFamily),
-                ),
-                isExpanded: true,
-                items: cities
-                    .map((city) => DropdownMenuItem<String>(
-                          value: city,
-                          child: Text(
-                            city,
-                            style: TextStyle(fontFamily: Fonts.fontFamily),
+                  padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+                  child: ListView(
+                    shrinkWrap: true,
+                    padding: const EdgeInsets.all(8),
+                    children: [
+                      // Image.asset(
+                      //   "assets/img/pngegg.png",
+                      //   height: 100,
+                      //   width: 150,
+                      //   color: thingsColor,
+                      // ),
+                      DropdownButtonFormField<String>(
+                        value: fromCity,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return emptyFieldErrMessage;
+                          } else {
+                            return null;
+                          }
+                        },
+                        decoration: const InputDecoration(
+                          errorStyle: TextStyle(
+                            color: Colors.white,
                           ),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  fromCity = value;
-                },
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              DropdownButtonFormField<String>(
-                value: fromCity,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return emptyFieldErrMessage;
-                  } else {
-                    return null;
-                  }
-                },
-                decoration: const InputDecoration(
-                  errorStyle: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                hint: const Text(
-                  "To",
-                  style: TextStyle(fontFamily: Fonts.fontFamily),
-                ),
-                isExpanded: true,
-                items: cities
-                    .map((city) => DropdownMenuItem<String>(
-                          value: city,
-                          child: Text(
-                            city,
-                            style: TextStyle(fontFamily: Fonts.fontFamily),
+                        ),
+                        hint: const Text(
+                          "From",
+                          style: TextStyle(
+                            fontFamily: Fonts.fontFamily,
+                            color: headingColor,
+                            fontSize: 20,
                           ),
-                        ))
-                    .toList(),
-                onChanged: (value) {
-                  toCity = value;
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TextButton(
-                      onPressed: _selectDate,
-                      child: const Text(
-                        "Date of Journey",
-                        style: TextStyle(
-                          color: Colors.blueAccent,
-                          fontFamily: Fonts.fontFamily,
+                        ),
+                        isExpanded: true,
+                        items: cities
+                            .map((city) => DropdownMenuItem<String>(
+                                  value: city,
+                                  child: Text(
+                                    city,
+                                    style:
+                                        TextStyle(fontFamily: Fonts.fontFamily),
+                                  ),
+                                ))
+                            .toList(),
+                        onChanged: (value) {
+                          fromCity = value;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      DropdownButtonFormField<String>(
+                        value: fromCity,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return emptyFieldErrMessage;
+                          } else {
+                            return null;
+                          }
+                        },
+                        decoration: const InputDecoration(
+                          errorStyle: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                        hint: const Text(
+                          "To",
+                          style: TextStyle(
+                              fontFamily: Fonts.fontFamily,
+                              color: headingColor,
+                              fontSize: 20),
+                        ),
+                        isExpanded: true,
+                        items: cities
+                            .map((city) => DropdownMenuItem<String>(
+                                  value: city,
+                                  child: Text(
+                                    city,
+                                    style:
+                                        TextStyle(fontFamily: Fonts.fontFamily),
+                                  ),
+                                ))
+                            .toList(),
+                        onChanged: (value) {
+                          toCity = value;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(
+                                  20,
+                                ),
+                                color: containerBackgroundColor,
+                              ),
+                              width: 168,
+                              child: TextButton(
+                                onPressed: _selectDate,
+                                child: const Text(
+                                  "Date of Journey",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontFamily: Fonts.fontFamily,
+                                      fontSize: 18),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Text(
+                              departureDate == null
+                                  ? 'No Date Chosen'
+                                  : getFormattedDate(departureDate!,
+                                      pattern: 'EEE MMM dd, yyyy'),
+                              style: const TextStyle(
+                                fontFamily: Fonts.fontFamily,
+                                color: headingColor,
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                    ),
-                    Text(
-                      departureDate == null
-                          ? 'No Date Chosen'
-                          : getFormattedDate(departureDate!,
-                              pattern: 'EEE MMM dd, yyyy'),
-                      style: TextStyle(fontFamily: Fonts.fontFamily),
-                    )
-                  ],
-                ),
-              ),
-              Center(
-                child: SizedBox(
-                  width: 350,
-                  height: 65,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor:
-                          WidgetStateProperty.all<Color>(seatSelectedColor),
-                    ),
-                    onPressed: _search,
-                    child: const Text(
-                      'Search',
-                      style: TextStyle(
-                          fontFamily: Fonts.fontFamily,
-                          fontSize: 28,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
+                      const SizedBox(
+                        height: 60,
+                      ),
+                      Center(
+                        child: SizedBox(
+                          width: 350,
+                          height: 60,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                                // side: BorderSide(color: Colors.red)
+                              )),
+                              backgroundColor:
+                                  WidgetStateProperty.all<Color>(blackishColor),
+                            ),
+                            onPressed: _search,
+                            child: const Text(
+                              'Search',
+                              style: TextStyle(
+                                  fontFamily: Fonts.fontFamily,
+                                  fontSize: 28,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:bus_reservation_udemy/models/bus_schedule.dart';
 import 'package:bus_reservation_udemy/models/but_route.dart';
 import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
+import 'package:bus_reservation_udemy/utils/colors.dart';
 import 'package:bus_reservation_udemy/utils/constants.dart';
 import 'package:bus_reservation_udemy/utils/fonts.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,10 +18,17 @@ class SearchResultPage extends StatelessWidget {
     final String departureDate = argList[1];
 
     return Scaffold(
+      backgroundColor: buttonColor,
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
         title: Text(
           "Available Buses",
-          style: TextStyle(fontFamily: Fonts.fontFamily),
+          style: TextStyle(
+            fontFamily: Fonts.fontFamily,
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 22,
+          ),
         ),
       ),
       body: ListView(
@@ -31,8 +39,10 @@ class SearchResultPage extends StatelessWidget {
             style: TextStyle(
               fontFamily: Fonts.fontFamily,
               fontSize: 18,
+              color: Colors.white,
             ),
           ),
+          const SizedBox(height: 15,),
           Consumer<AppDataProvider>(
             builder: (context, provider, _) => FutureBuilder<List<BusSchedule>>(
               future: provider.getSchedulesByRouteName(route.routeName),
@@ -49,11 +59,9 @@ class SearchResultPage extends StatelessWidget {
                         .toList(),
                   );
                 }
-
                 if (snapshot.hasError) {
                   return const Text("Failed to fetch the data");
                 }
-
                 return const Text("Please wait...");
               },
             ),
@@ -80,13 +88,14 @@ class ScheduleItemView extends StatelessWidget {
         arguments: [schedule, date],
       ),
       child: Card(
+        color: blackishColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-              title: Text(schedule.bus.busName),
-              subtitle: Text(schedule.bus.busType),
-              trailing: Text('${currency}${schedule.ticketPrice}'),
+              title: Text(schedule.bus.busName, style: TextStyle(color: Colors.white,),),
+              subtitle: Text(schedule.bus.busType, style: TextStyle(color: Colors.white,),),
+              trailing: Text('${currency}${schedule.ticketPrice}', style: TextStyle(color: Colors.white,),),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -98,6 +107,7 @@ class ScheduleItemView extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 17,
                       fontFamily: Fonts.fontFamily,
+                      color: Colors.white,
                     ),
                   ),
                   Text(
@@ -105,6 +115,7 @@ class ScheduleItemView extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 17,
                       fontFamily: Fonts.fontFamily,
+                      color: Colors.white,
                     ),
                   ),
                 ],
@@ -120,6 +131,7 @@ class ScheduleItemView extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 17,
                       fontFamily: Fonts.fontFamily,
+                      color: Colors.white,
                     ),
                   ),
                   Text(
@@ -127,6 +139,7 @@ class ScheduleItemView extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 17,
                       fontFamily: Fonts.fontFamily,
+                      color: Colors.white,
                     ),
                   ),
                 ],

@@ -1,4 +1,6 @@
 import 'package:bus_reservation_udemy/datasource/temp_db.dart';
+import 'package:bus_reservation_udemy/utils/colors.dart';
+import 'package:bus_reservation_udemy/utils/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,11 +20,22 @@ class _AddRoutePageState extends State<AddRoutePage> {
   final _formKey = GlobalKey<FormState>();
   String? from, to;
   final distanceController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: buttonColor,
       appBar: AppBar(
-        title: const Text('Add Route'),
+        backgroundColor: Colors.transparent,
+        title: const Text(
+          'Add Route',
+          style: TextStyle(
+            fontFamily: Fonts.fontFamily,
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 22,
+          ),
+        ),
       ),
       body: Form(
         key: _formKey,
@@ -39,12 +52,19 @@ class _AddRoutePageState extends State<AddRoutePage> {
                 },
                 isExpanded: true,
                 value: from,
-                hint: const Text('From'),
+                hint: const Text(
+                  'From',
+                  style: TextStyle(
+                    fontFamily: Fonts.fontFamily,
+                    color: headingColor,
+                    fontSize: 19,
+                  ),
+                ),
                 items: cities
                     .map((e) => DropdownMenuItem<String>(
-                  value: e,
-                  child: Text(e),
-                ))
+                          value: e,
+                          child: Text(e),
+                        ))
                     .toList(),
               ),
               const SizedBox(
@@ -58,22 +78,34 @@ class _AddRoutePageState extends State<AddRoutePage> {
                 },
                 isExpanded: true,
                 value: to,
-                hint: const Text('To'),
+                hint: const Text(
+                  'To',
+                  style: TextStyle(
+                    fontFamily: Fonts.fontFamily,
+                    color: headingColor,
+                    fontSize: 19,
+                  ),
+                ),
                 items: cities
                     .map((e) => DropdownMenuItem<String>(
-                  value: e,
-                  child: Text(e),
-                ))
+                          value: e,
+                          child: Text(e),
+                        ))
                     .toList(),
               ),
               const SizedBox(
-                height: 5,
+                height: 20,
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
                 controller: distanceController,
                 decoration: const InputDecoration(
+                  fillColor: Colors.white,
                   hintText: 'Distance in Kilometer',
+                  hintStyle: TextStyle(
+                    fontFamily: Fonts.fontFamily,
+                    color: headingColor,
+                  ),
                   filled: true,
                   prefixIcon: Icon(Icons.social_distance_outlined),
                 ),
@@ -85,14 +117,31 @@ class _AddRoutePageState extends State<AddRoutePage> {
                 },
               ),
               const SizedBox(
-                height: 5,
+                height: 30,
               ),
               Center(
                 child: SizedBox(
-                  width: 150,
+                  width: 350,
+                  height: 65,
                   child: ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        // side: BorderSide(color: Colors.red)
+                      )),
+                      backgroundColor:
+                          WidgetStateProperty.all<Color>(blackishColor),
+                    ),
                     onPressed: addRoute,
-                    child: const Text('ADD ROUTE'),
+                    child: const Text(
+                      'ADD ROUTE',
+                      style: TextStyle(
+                          fontFamily: Fonts.fontFamily,
+                          fontSize: 28,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ),
@@ -115,14 +164,14 @@ class _AddRoutePageState extends State<AddRoutePage> {
       Provider.of<AppDataProvider>(context, listen: false)
           .addRoute(route)
           .then((response) {
-        if(response.responseStatus == ResponseStatus.SAVED) {
+        if (response.responseStatus == ResponseStatus.SAVED) {
           showMessage(context, response.message);
           resetFields();
         }
       });
-
     }
   }
+
   @override
   void dispose() {
     distanceController.dispose();

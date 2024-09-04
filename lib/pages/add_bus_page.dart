@@ -1,5 +1,7 @@
 import 'package:bus_reservation_udemy/datasource/temp_db.dart';
 import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
+import 'package:bus_reservation_udemy/utils/colors.dart';
+import 'package:bus_reservation_udemy/utils/fonts.dart';
 import 'package:bus_reservation_udemy/utils/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,11 +22,22 @@ class _AddBusPageState extends State<AddBusPage> {
   final seatController = TextEditingController();
   final nameController = TextEditingController();
   final numberController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: buttonColor,
       appBar: AppBar(
-        title: const Text('Add Bus'),
+        backgroundColor: Colors.transparent,
+        title: const Text(
+          'Add Bus',
+          style: TextStyle(
+            fontFamily: Fonts.fontFamily,
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 22,
+          ),
+        ),
       ),
       body: Form(
         key: _formKey,
@@ -45,24 +58,39 @@ class _AddBusPageState extends State<AddBusPage> {
                   }
                 },
                 decoration: InputDecoration(
-                    errorStyle: const TextStyle(color: Colors.white70)),
+                  errorStyle: const TextStyle(
+                    color: Colors.white70,
+                  ),
+                ),
                 isExpanded: true,
                 value: busType,
-                hint: const Text('Select Bus Type'),
+                hint: const Text(
+                  'Select Bus Type',
+                  style: TextStyle(
+                    fontFamily: Fonts.fontFamily,
+                    color: headingColor,
+                    fontSize: 19,
+                  ),
+                ),
                 items: busTypes
                     .map((e) => DropdownMenuItem<String>(
-                  value: e,
-                  child: Text(e),
-                ))
+                          value: e,
+                          child: Text(e),
+                        ))
                     .toList(),
               ),
               const SizedBox(
-                height: 5,
+                height: 10,
               ),
               TextFormField(
                 controller: nameController,
                 decoration: const InputDecoration(
+                  fillColor: Colors.white,
                   hintText: 'Bus Name',
+                  hintStyle: TextStyle(
+                    fontFamily: Fonts.fontFamily,
+                    color: headingColor,
+                  ),
                   filled: true,
                   prefixIcon: Icon(Icons.bus_alert),
                 ),
@@ -74,12 +102,17 @@ class _AddBusPageState extends State<AddBusPage> {
                 },
               ),
               const SizedBox(
-                height: 5,
+                height: 7,
               ),
               TextFormField(
                 controller: numberController,
                 decoration: const InputDecoration(
+                  fillColor: Colors.white,
                   hintText: 'Bus Number',
+                  hintStyle: TextStyle(
+                    fontFamily: Fonts.fontFamily,
+                    color: headingColor,
+                  ),
                   filled: true,
                   prefixIcon: Icon(Icons.bus_alert),
                 ),
@@ -91,13 +124,18 @@ class _AddBusPageState extends State<AddBusPage> {
                 },
               ),
               const SizedBox(
-                height: 5,
+                height: 7,
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
                 controller: seatController,
                 decoration: const InputDecoration(
+                  fillColor: Colors.white,
                   hintText: 'Total Seats',
+                  hintStyle: TextStyle(
+                    fontFamily: Fonts.fontFamily,
+                    color: headingColor,
+                  ),
                   filled: true,
                   prefixIcon: Icon(Icons.event_seat),
                 ),
@@ -109,14 +147,31 @@ class _AddBusPageState extends State<AddBusPage> {
                 },
               ),
               const SizedBox(
-                height: 5,
+                height: 20,
               ),
               Center(
                 child: SizedBox(
-                  width: 150,
+                  width: 350,
+                  height: 65,
                   child: ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18.0),
+                        // side: BorderSide(color: Colors.red)
+                      )),
+                      backgroundColor:
+                          WidgetStateProperty.all<Color>(blackishColor),
+                    ),
                     onPressed: addBus,
-                    child: const Text('ADD BUS'),
+                    child: const Text(
+                      'ADD BUS',
+                      style: TextStyle(
+                          fontFamily: Fonts.fontFamily,
+                          fontSize: 28,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ),
               ),
@@ -130,8 +185,8 @@ class _AddBusPageState extends State<AddBusPage> {
   void addBus() {
     if (_formKey.currentState!.validate()) {
       final bus = Bus(
-        busId: TempDB.tableBus.length +
-            1, // remove this line if you save into MySql DB
+        busId: TempDB.tableBus.length + 1,
+        // remove this line if you save into MySql DB
         busName: nameController.text,
         busNumber: numberController.text,
         busType: busType!,
@@ -140,9 +195,9 @@ class _AddBusPageState extends State<AddBusPage> {
       Provider.of<AppDataProvider>(context, listen: false)
           .addBus(bus)
           .then((response) {
-             if (response.responseStatus == ResponseStatus.SAVED) {
-              showMessage(context, response.message);
-              resetFields();
+        if (response.responseStatus == ResponseStatus.SAVED) {
+          showMessage(context, response.message);
+          resetFields();
         }
       });
     }
