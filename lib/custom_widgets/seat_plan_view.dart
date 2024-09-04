@@ -109,7 +109,7 @@ class _SeatState extends State<Seat> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
+      onTap: widget.isBooked? null : () {
         setState(() {
           selected = !selected;
         });

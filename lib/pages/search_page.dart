@@ -1,4 +1,5 @@
 import 'package:bus_reservation_udemy/datasource/temp_db.dart';
+import 'package:bus_reservation_udemy/drawer/main_drawer.dart';
 import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
 import 'package:bus_reservation_udemy/utils/colors.dart';
 import 'package:bus_reservation_udemy/utils/constants.dart';
@@ -23,6 +24,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MainDrawer(),
       appBar: AppBar(
         title: const Text(
           "Search Buses",

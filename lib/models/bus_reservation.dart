@@ -14,7 +14,7 @@ class BusReservation {
   int totalPrice;
 
   BusReservation({
-    this.reservationId,
+     this.reservationId,
     required this.customer,
     required this.busSchedule,
     required this.timestamp,
