@@ -1,5 +1,5 @@
 class Bus {
-  int? busId;
+  int?  busId;
   String busName;
   String busNumber;
   String busType;
