@@ -14,8 +14,6 @@ public class AuthResponseModel {
     private String message;
     private String accessToken;
     private Long loginTime;
-    private Long expirationTeime;
-
-
+    private Long expirationDuration;
 
 }

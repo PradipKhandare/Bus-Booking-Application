@@ -2,6 +2,7 @@ import 'package:bus_reservation_udemy/pages/add_bus_page.dart';
 import 'package:bus_reservation_udemy/pages/add_route_page.dart';
 import 'package:bus_reservation_udemy/pages/add_schedule_page.dart';
 import 'package:bus_reservation_udemy/pages/booking_confirmation_page.dart';
+import 'package:bus_reservation_udemy/pages/login_page.dart';
 import 'package:bus_reservation_udemy/pages/reservation_page.dart';
 import 'package:bus_reservation_udemy/pages/search_page.dart';
 import 'package:bus_reservation_udemy/pages/search_result_page.dart';
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
         routeNameAddBusPage: (context)  => const AddBusPage(),
         routeNameAddRoutePage: (context) => const AddRoutePage(),
         routeNameAddSchedulePage: (context) => const AddSchedulePage(),
+        routeNameLoginPage: (context) => const LoginPage(),
       },
     );
   }

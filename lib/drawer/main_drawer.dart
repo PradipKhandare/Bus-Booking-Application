@@ -15,14 +15,21 @@ class MainDrawer extends StatelessWidget {
           Container(
             height: 200,
             color: buttonColor,
-            child: Image.asset("assets/img/icon_drawer.png", fit: BoxFit.fill, color: Colors.white,),
+            child: Image.asset(
+              "assets/img/icon_drawer.png",
+              fit: BoxFit.fill,
+              color: Colors.white,
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 3,),
+            padding: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 8,
+            ),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(
-                  20,
+                  15,
                 ),
                 color: containerBackgroundColor,
               ),
@@ -36,7 +43,7 @@ class MainDrawer extends StatelessWidget {
                 title: const Text(
                   'Add Bus',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 18,
                     color: Colors.white,
                     fontFamily: Fonts.fontFamily,
                     fontWeight: FontWeight.bold,
@@ -46,11 +53,14 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 3,),
+            padding: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 8,
+            ),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(
-                  20,
+                  15,
                 ),
                 color: containerBackgroundColor,
               ),
@@ -64,7 +74,7 @@ class MainDrawer extends StatelessWidget {
                 title: const Text(
                   'Add Route',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 18,
                     color: Colors.white,
                     fontFamily: Fonts.fontFamily,
                     fontWeight: FontWeight.bold,
@@ -74,11 +84,14 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 3,),
+            padding: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 8,
+            ),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(
-                  20,
+                  15,
                 ),
                 color: containerBackgroundColor,
               ),
@@ -92,7 +105,7 @@ class MainDrawer extends StatelessWidget {
                 title: const Text(
                   'Add Schedule',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 18,
                     color: Colors.white,
                     fontFamily: Fonts.fontFamily,
                     fontWeight: FontWeight.bold,
@@ -102,11 +115,14 @@ class MainDrawer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 3,),
+            padding: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 8,
+            ),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(
-                  20,
+                  15,
                 ),
                 color: containerBackgroundColor,
               ),
@@ -120,7 +136,7 @@ class MainDrawer extends StatelessWidget {
                 title: const Text(
                   'View Reservations',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 18,
                     color: Colors.white,
                     fontFamily: Fonts.fontFamily,
                     fontWeight: FontWeight.bold,
@@ -129,13 +145,15 @@ class MainDrawer extends StatelessWidget {
               ),
             ),
           ),
-
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 3,),
+            padding: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 8,
+            ),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(
-                  20,
+                  15,
                 ),
                 color: containerBackgroundColor,
               ),
@@ -149,7 +167,7 @@ class MainDrawer extends StatelessWidget {
                 title: const Text(
                   'Admin Login',
                   style: TextStyle(
-                    fontSize: 22,
+                    fontSize: 18,
                     color: Colors.white,
                     fontFamily: Fonts.fontFamily,
                     fontWeight: FontWeight.bold,
