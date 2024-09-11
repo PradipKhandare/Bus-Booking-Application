@@ -1,5 +1,5 @@
 import 'package:bus_reservation_udemy/models/bus_schedule.dart';
-import 'package:bus_reservation_udemy/models/but_route.dart';
+import 'package:bus_reservation_udemy/models/bus_route.dart';
 import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
 import 'package:bus_reservation_udemy/utils/colors.dart';
 import 'package:bus_reservation_udemy/utils/constants.dart';

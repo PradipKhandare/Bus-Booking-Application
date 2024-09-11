@@ -1,12 +1,10 @@
-import 'package:bus_reservation_udemy/utils/colors.dart';
-import 'package:bus_reservation_udemy/utils/fonts.dart';
+import 'package:bus_reservation_udemy/custom_widgets/login_alert_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../datasource/temp_db.dart';
 import '../models/bus_model.dart';
 import '../models/bus_schedule.dart';
-import '../models/but_route.dart';
+import '../models/bus_route.dart';
 import '../providers/app_data_provider.dart';
 import '../utils/constants.dart';
 import '../utils/helper_functions.dart';
@@ -20,12 +18,10 @@ class AddSchedulePage extends StatefulWidget {
 
 class _AddSchedulePageState extends State<AddSchedulePage> {
   final _formKey = GlobalKey<FormState>();
-
   String? busType;
   BusRoute? busRoute;
   Bus? bus;
   TimeOfDay? timeOfDay;
-
   final priceController = TextEditingController();
   final discountController = TextEditingController();
   final feeController = TextEditingController();
@@ -36,21 +32,12 @@ class _AddSchedulePageState extends State<AddSchedulePage> {
     super.didChangeDependencies();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: buttonColor,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          'Add Schedule',
-          style: TextStyle(
-            fontFamily: Fonts.fontFamily,
-            color: Colors.white,
-            fontWeight: FontWeight.w600,
-            fontSize: 22,
-          ),
-        ),
+        title: const Text('Add Schedule'),
       ),
       body: Form(
         key: _formKey,
@@ -59,10 +46,8 @@ class _AddSchedulePageState extends State<AddSchedulePage> {
             padding: const EdgeInsets.symmetric(horizontal: 40),
             shrinkWrap: true,
             children: [
-              const SizedBox(height: 10,),
               Consumer<AppDataProvider>(
-                builder: (context, provider, child) =>
-                    DropdownButtonFormField<Bus>(
+                builder: (context, provider, child) => DropdownButtonFormField<Bus>(
                   onChanged: (value) {
                     setState(() {
                       bus = value;
@@ -70,26 +55,17 @@ class _AddSchedulePageState extends State<AddSchedulePage> {
                   },
                   isExpanded: true,
                   value: bus,
-                  hint: const Text(
-                    'Select Bus',
-                    style: TextStyle(
-                      fontFamily: Fonts.fontFamily,
-                      color: headingColor,
-                      fontSize: 19,
-                    ),
-                  ),
+                  hint: const Text('Select Bus'),
                   items: provider.busList
                       .map((e) => DropdownMenuItem<Bus>(
-                            value: e,
-                            child: Text('${e.busName}-${e.busType}'),
-                          ))
+                    value: e,
+                    child: Text('${e.busName}-${e.busType}'),
+                  ))
                       .toList(),
                 ),
               ),
-              const SizedBox(height: 15,),
               Consumer<AppDataProvider>(
-                builder: (context, provider, child) =>
-                    DropdownButtonFormField<BusRoute>(
+                builder: (context, provider, child) => DropdownButtonFormField<BusRoute>(
                   onChanged: (value) {
                     setState(() {
                       busRoute = value;
@@ -97,33 +73,23 @@ class _AddSchedulePageState extends State<AddSchedulePage> {
                   },
                   isExpanded: true,
                   value: busRoute,
-                  hint: const Text(
-                    'Select Route',
-                    style: TextStyle(
-                      fontFamily: Fonts.fontFamily,
-                      color: headingColor,
-                      fontSize: 19,
-                    ),
-                  ),
+                  hint: const Text('Select Route'),
                   items: provider.routeList
                       .map((e) => DropdownMenuItem<BusRoute>(
-                            value: e,
-                            child: Text(e.routeName),
-                          ))
+                    value: e,
+                    child: Text(e.routeName),
+                  ))
                       .toList(),
                 ),
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 5,
+              ),
               TextFormField(
                 keyboardType: TextInputType.number,
                 controller: priceController,
                 decoration: const InputDecoration(
-                  fillColor: Colors.white,
                   hintText: 'Ticket Price',
-                  hintStyle: TextStyle(
-                    fontFamily: Fonts.fontFamily,
-                    color: headingColor,
-                  ),
                   filled: true,
                   prefixIcon: Icon(Icons.price_change),
                 ),
@@ -134,17 +100,14 @@ class _AddSchedulePageState extends State<AddSchedulePage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 5,
+              ),
               TextFormField(
                 keyboardType: TextInputType.number,
                 controller: discountController,
                 decoration: const InputDecoration(
-                  fillColor: Colors.white,
                   hintText: 'Discount(%)',
-                  hintStyle: TextStyle(
-                    fontFamily: Fonts.fontFamily,
-                    color: headingColor,
-                  ),
                   filled: true,
                   prefixIcon: Icon(Icons.discount),
                 ),
@@ -155,17 +118,14 @@ class _AddSchedulePageState extends State<AddSchedulePage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 10,),
+              const SizedBox(
+                height: 5,
+              ),
               TextFormField(
                 keyboardType: TextInputType.number,
                 controller: feeController,
                 decoration: const InputDecoration(
-                  fillColor: Colors.white,
                   hintText: 'Processing Fee',
-                  hintStyle: TextStyle(
-                    fontFamily: Fonts.fontFamily,
-                    color: headingColor,
-                  ),
                   filled: true,
                   prefixIcon: Icon(Icons.monetization_on_outlined),
                 ),
@@ -176,59 +136,27 @@ class _AddSchedulePageState extends State<AddSchedulePage> {
                   return null;
                 },
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 5,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        16,
-                      ),
-                      color: containerBackgroundColor,
-                    ),
-                    child: TextButton(
-                      onPressed: _selectTime,
-                      child: const Text(
-                        'Select Departure Time',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontFamily: Fonts.fontFamily,
-                            fontSize: 16),
-                      ),
-                    ),
+                  TextButton(
+                    onPressed: _selectTime,
+                    child: const Text('Select Departure Time'),
                   ),
-                  const SizedBox(width: 10,),
                   Text(timeOfDay == null
                       ? 'No time chosen'
-                      : getFormattedTime(timeOfDay!),style: const TextStyle(
-                    fontFamily: Fonts.fontFamily,
-                    color: headingColor,
-                  ),),
+                      : getFormattedTime(timeOfDay!)),
                 ],
               ),
-              const SizedBox(height: 20,),
               Center(
                 child: SizedBox(
-                  width: 350,
-                  height: 60,
+                  width: 150,
                   child: ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<
-                          RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            // side: BorderSide(color: Colors.red)
-                          )),
-                      backgroundColor:
-                      WidgetStateProperty.all<Color>(blackishColor),
-                    ),
                     onPressed: addSchedule,
-                    child: const Text('ADD SCHEDULE',style: TextStyle(
-                        fontFamily: Fonts.fontFamily,
-                        fontSize: 28,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,),),
+                    child: const Text('ADD Schedule'),
                   ),
                 ),
               ),
@@ -240,13 +168,13 @@ class _AddSchedulePageState extends State<AddSchedulePage> {
   }
 
   void addSchedule() {
-    if (timeOfDay == null) {
-      showMessage(context, 'Please select a departure time');
+    if(timeOfDay == null) {
+      showMessage(context, 'Please select a departure date');
       return;
     }
     if (_formKey.currentState!.validate()) {
       final schedule = BusSchedule(
-        scheduleId: TempDB.tableSchedule.length + 1,
+        //scheduleId: TempDB.tableSchedule.length + 1,
         bus: bus!,
         busRoute: busRoute!,
         departureTime: getFormattedTime(timeOfDay!),
@@ -260,8 +188,18 @@ class _AddSchedulePageState extends State<AddSchedulePage> {
         if (response.responseStatus == ResponseStatus.SAVED) {
           showMessage(context, response.message);
           resetFields();
+        } else if (response.responseStatus == ResponseStatus.EXPIRED ||
+            response.responseStatus == ResponseStatus.UNAUTHORIZED) {
+          showLoginAlertDialog(
+            context: context,
+            message: response.message,
+            callback: () {
+              Navigator.pushNamed(context, routeNameLoginPage);
+            },
+          );
         }
       });
+
     }
   }
 
@@ -276,7 +214,7 @@ class _AddSchedulePageState extends State<AddSchedulePage> {
         );
       },
     );
-    if (time != null) {
+    if(time != null) {
       setState(() {
         timeOfDay = time;
       });

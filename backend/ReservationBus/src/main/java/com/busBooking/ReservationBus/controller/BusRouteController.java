@@ -17,11 +17,10 @@ public class BusRouteController {
     @Autowired
     private BusRouteService busRouteService;
 
-
     @PostMapping("/add")
     public ResponseModel<BusRoute> addRoute(@RequestBody BusRoute busRoute) {
         final BusRoute busRoute1 = busRouteService.addRoute(busRoute);
-        return new ResponseModel<>(HttpStatus.OK.value(), "Route added successfully", busRoute1);
+        return new ResponseModel<>(HttpStatus.OK.value(), "Route Saved", busRoute1);
     }
 
     @GetMapping("/all")

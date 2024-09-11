@@ -1,3 +1,4 @@
+import 'package:bus_reservation_udemy/custom_widgets/login_alert_dialog.dart';
 import 'package:bus_reservation_udemy/datasource/temp_db.dart';
 import 'package:bus_reservation_udemy/providers/app_data_provider.dart';
 import 'package:bus_reservation_udemy/utils/colors.dart';
@@ -185,7 +186,7 @@ class _AddBusPageState extends State<AddBusPage> {
   void addBus() {
     if (_formKey.currentState!.validate()) {
       final bus = Bus(
-        busId: TempDB.tableBus.length + 1,
+        //busId: TempDB.tableBus.length + 1,
         // remove this line if you save into MySql DB
         busName: nameController.text,
         busNumber: numberController.text,
@@ -198,6 +199,14 @@ class _AddBusPageState extends State<AddBusPage> {
         if (response.responseStatus == ResponseStatus.SAVED) {
           showMessage(context, response.message);
           resetFields();
+        } else if (response.responseStatus == ResponseStatus.EXPIRED ||
+            response.responseStatus == ResponseStatus.UNAUTHORIZED) {
+          showLoginAlertDialog(
+              context: context,
+              message: response.message,
+              callback: () {
+                Navigator.pushNamed(context, routeNameLoginPage);
+              });
         }
       });
     }

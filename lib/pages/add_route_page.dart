@@ -4,7 +4,8 @@ import 'package:bus_reservation_udemy/utils/fonts.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/but_route.dart';
+import '../custom_widgets/login_alert_dialog.dart';
+import '../models/bus_route.dart';
 import '../providers/app_data_provider.dart';
 import '../utils/constants.dart';
 import '../utils/helper_functions.dart';
@@ -62,9 +63,9 @@ class _AddRoutePageState extends State<AddRoutePage> {
                 ),
                 items: cities
                     .map((e) => DropdownMenuItem<String>(
-                          value: e,
-                          child: Text(e),
-                        ))
+                  value: e,
+                  child: Text(e),
+                ))
                     .toList(),
               ),
               const SizedBox(
@@ -88,9 +89,9 @@ class _AddRoutePageState extends State<AddRoutePage> {
                 ),
                 items: cities
                     .map((e) => DropdownMenuItem<String>(
-                          value: e,
-                          child: Text(e),
-                        ))
+                  value: e,
+                  child: Text(e),
+                ))
                     .toList(),
               ),
               const SizedBox(
@@ -127,11 +128,9 @@ class _AddRoutePageState extends State<AddRoutePage> {
                     style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                        // side: BorderSide(color: Colors.red)
-                      )),
-                      backgroundColor:
-                          WidgetStateProperty.all<Color>(blackishColor),
+                            borderRadius: BorderRadius.circular(18.0),
+                          )),
+                      backgroundColor: MaterialStateProperty.all<Color>(blackishColor),
                     ),
                     onPressed: addRoute,
                     child: const Text(
@@ -155,7 +154,7 @@ class _AddRoutePageState extends State<AddRoutePage> {
   void addRoute() {
     if (_formKey.currentState!.validate()) {
       final route = BusRoute(
-        routeId: TempDB.tableRoute.length + 1,
+        //routeId: TempDB.tableRoute.length + 1,
         routeName: '$from-$to',
         cityFrom: from!,
         cityTo: to!,
@@ -167,11 +166,20 @@ class _AddRoutePageState extends State<AddRoutePage> {
         if (response.responseStatus == ResponseStatus.SAVED) {
           showMessage(context, response.message);
           resetFields();
+        } else if (response.responseStatus == ResponseStatus.EXPIRED ||
+            response.responseStatus == ResponseStatus.UNAUTHORIZED) {
+          showLoginAlertDialog(
+            context: context,
+            message: response.message,
+            callback: () {
+              Navigator.pushNamed(context, routeNameLoginPage);
+            },
+          );
         }
       });
+
     }
   }
-
   @override
   void dispose() {
     distanceController.dispose();

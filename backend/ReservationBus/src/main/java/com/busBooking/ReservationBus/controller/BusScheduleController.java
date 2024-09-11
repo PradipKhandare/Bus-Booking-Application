@@ -22,8 +22,8 @@ public class BusScheduleController {
 
     @PostMapping("/add")
     public ResponseModel<BusSchedule> addBusSchedule(@RequestBody BusSchedule busSchedule) {
-       final BusSchedule busSchedule1 = busScheduleService.addBusSchedule(busSchedule);
-       return new ResponseModel<>(HttpStatus.OK.value(), "Schedule saved", busSchedule1);
+        final BusSchedule schedule = busScheduleService.addBusSchedule(busSchedule);
+        return new ResponseModel<>(HttpStatus.OK.value(), "Schedule Saved", schedule);
     }
 
     @GetMapping("/all")

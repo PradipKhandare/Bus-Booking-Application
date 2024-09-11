@@ -5,8 +5,6 @@ import org.springframework.http.HttpStatus;
 public class ReservationAPIException extends RuntimeException {
 
     private final HttpStatus status;
-
-
     private final String message;
 
     public ReservationAPIException(HttpStatus status, String message) {

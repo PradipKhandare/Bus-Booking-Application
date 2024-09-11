@@ -51,7 +51,7 @@ public class JwtTokenProvider {
             Jwts.parser().setSigningKey(key()).build().parse(token);
             return true;
         }catch(MalformedJwtException e){
-                throw new ReservationAPIException(HttpStatus.BAD_REQUEST,"Invalid token");
+            throw new ReservationAPIException(HttpStatus.BAD_REQUEST,"Invalid token");
         }catch(ExpiredJwtException e){
             throw new ReservationAPIException(HttpStatus.BAD_REQUEST,"token exception");
         }catch(UnsupportedJwtException e){

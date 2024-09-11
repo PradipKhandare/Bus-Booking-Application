@@ -4,7 +4,7 @@ import 'package:bus_reservation_udemy/models/bus_reservation.dart';
 import '../models/auth_response_model.dart';
 import '../models/bus_model.dart';
 import '../models/bus_schedule.dart';
-import '../models/but_route.dart';
+import '../models/bus_route.dart';
 import '../models/response_model.dart';
 import '../utils/constants.dart';
 

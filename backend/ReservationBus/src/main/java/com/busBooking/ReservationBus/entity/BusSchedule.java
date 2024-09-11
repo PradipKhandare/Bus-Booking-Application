@@ -6,7 +6,8 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "bus_schedule")
+@Entity
+@Table(name = "bus_schedule")
 public class BusSchedule {
 
     @Id

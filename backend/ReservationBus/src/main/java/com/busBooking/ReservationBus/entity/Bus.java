@@ -18,7 +18,6 @@ public class Bus {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long busId;
     private String busName;
-
     @Column(unique = true)
     private String busNumber;
     private String busType;

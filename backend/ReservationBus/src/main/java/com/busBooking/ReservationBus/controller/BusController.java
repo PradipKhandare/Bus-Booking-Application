@@ -20,9 +20,9 @@ public class BusController {
     private BusService busService;
 
     @PostMapping("/add")
-   public ResponseModel<Bus> addBus(@RequestBody Bus bus) {
-        busService.addBus(bus);
-        return new ResponseModel<>(HttpStatus.OK.value(),"Bus Saved", bus);
+    public ResponseModel<Bus> addBus(@RequestBody Bus bus) {
+        final Bus savedBus = busService.addBus(bus);
+        return new ResponseModel<>(HttpStatus.OK.value(), "Bus saved", savedBus);
     }
 
     @GetMapping("/all")
