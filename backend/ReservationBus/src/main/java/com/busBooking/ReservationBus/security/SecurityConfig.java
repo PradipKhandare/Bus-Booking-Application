@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,17 +32,16 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.GET)
-                .permitAll()
-                .requestMatchers("/api/auth/**")
-                .permitAll()
-                .requestMatchers(HttpMethod.POST,"/api/bus/add", "/api/schedule/add", "/api/route/addd")
-                .authenticated()
-                .requestMatchers(HttpMethod.POST, "api/reservation/add")
-                .permitAll()
-                .and()
+        httpSecurity.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests((authReq) -> authReq
+                        .requestMatchers(HttpMethod.GET)
+                        .permitAll()
+                        .requestMatchers("/api/auth/**")
+                        .permitAll()
+                        .requestMatchers(HttpMethod.POST,"/api/bus/add", "/api/schedule/add", "/api/route/add")
+                        .authenticated()
+                        .requestMatchers(HttpMethod.POST, "api/reservation/add")
+                        .permitAll())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(jwtEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
