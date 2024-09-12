@@ -55,30 +55,33 @@ class _ReservationPageState extends State<ReservationPage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SearchBox(
-              onSubmit: (value) {
-                _search(value);
-              },
-            ),
-            ExpansionPanelList(
-              expansionCallback: (index, isExpanded) {
-                setState(() {
-                  items[index].isExpanded = !items[index].isExpanded;
-                });
-              },
-              children: items
-                  .map((item) => ExpansionPanel(
-                        isExpanded: item.isExpanded,
-                        headerBuilder: (context, isExpanded) {
-                          return ReservationItemHeaderView(header: item.header);
-                        },
-                        body: ReservationItemBodyView(body: item.body),
-                      ))
-                  .toList(),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              SearchBox(
+                onSubmit: (value) {
+                  _search(value);
+                },
+              ),
+              ExpansionPanelList(
+                expansionCallback: (index, isExpanded) {
+                  setState(() {
+                    items[index].isExpanded = !items[index].isExpanded;
+                  });
+                },
+                children: items
+                    .map((item) => ExpansionPanel(
+                          isExpanded: item.isExpanded,
+                          headerBuilder: (context, isExpanded) {
+                            return ReservationItemHeaderView(header: item.header);
+                          },
+                          body: ReservationItemBodyView(body: item.body),
+                        ))
+                    .toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );

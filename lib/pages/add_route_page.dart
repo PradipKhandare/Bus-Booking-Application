@@ -41,110 +41,122 @@ class _AddRoutePageState extends State<AddRoutePage> {
       body: Form(
         key: _formKey,
         child: Center(
-          child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            shrinkWrap: true,
-            children: [
-              DropdownButtonFormField<String>(
-                onChanged: (value) {
-                  setState(() {
-                    from = value;
-                  });
-                },
-                isExpanded: true,
-                value: from,
-                hint: const Text(
-                  'From',
-                  style: TextStyle(
-                    fontFamily: Fonts.fontFamily,
-                    color: headingColor,
-                    fontSize: 19,
-                  ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: MediaQuery.of(context).size.height / 2.5,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(
+                  15,
                 ),
-                items: cities
-                    .map((e) => DropdownMenuItem<String>(
-                  value: e,
-                  child: Text(e),
-                ))
-                    .toList(),
               ),
-              const SizedBox(
-                height: 5,
-              ),
-              DropdownButtonFormField<String>(
-                onChanged: (value) {
-                  setState(() {
-                    to = value;
-                  });
-                },
-                isExpanded: true,
-                value: to,
-                hint: const Text(
-                  'To',
-                  style: TextStyle(
-                    fontFamily: Fonts.fontFamily,
-                    color: headingColor,
-                    fontSize: 19,
-                  ),
-                ),
-                items: cities
-                    .map((e) => DropdownMenuItem<String>(
-                  value: e,
-                  child: Text(e),
-                ))
-                    .toList(),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                keyboardType: TextInputType.number,
-                controller: distanceController,
-                decoration: const InputDecoration(
-                  fillColor: Colors.white,
-                  hintText: 'Distance in Kilometer',
-                  hintStyle: TextStyle(
-                    fontFamily: Fonts.fontFamily,
-                    color: headingColor,
-                  ),
-                  filled: true,
-                  prefixIcon: Icon(Icons.social_distance_outlined),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return emptyFieldErrMessage;
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Center(
-                child: SizedBox(
-                  width: 350,
-                  height: 65,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                          )),
-                      backgroundColor: MaterialStateProperty.all<Color>(blackishColor),
-                    ),
-                    onPressed: addRoute,
-                    child: const Text(
-                      'ADD ROUTE',
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                shrinkWrap: true,
+                children: [
+                  DropdownButtonFormField<String>(
+                    onChanged: (value) {
+                      setState(() {
+                        from = value;
+                      });
+                    },
+                    isExpanded: true,
+                    value: from,
+                    hint: const Text(
+                      'From',
                       style: TextStyle(
-                          fontFamily: Fonts.fontFamily,
-                          fontSize: 28,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                        fontFamily: Fonts.fontFamily,
+                        color: headingColor,
+                        fontSize: 19,
+                      ),
+                    ),
+                    items: cities
+                        .map((e) => DropdownMenuItem<String>(
+                      value: e,
+                      child: Text(e),
+                    ))
+                        .toList(),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  DropdownButtonFormField<String>(
+                    onChanged: (value) {
+                      setState(() {
+                        to = value;
+                      });
+                    },
+                    isExpanded: true,
+                    value: to,
+                    hint: const Text(
+                      'To',
+                      style: TextStyle(
+                        fontFamily: Fonts.fontFamily,
+                        color: headingColor,
+                        fontSize: 19,
+                      ),
+                    ),
+                    items: cities
+                        .map((e) => DropdownMenuItem<String>(
+                      value: e,
+                      child: Text(e),
+                    ))
+                        .toList(),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    controller: distanceController,
+                    decoration: const InputDecoration(
+                      fillColor: Colors.white,
+                      hintText: 'Distance in Kilometer',
+                      hintStyle: TextStyle(
+                        fontFamily: Fonts.fontFamily,
+                        color: headingColor,
+                      ),
+                      filled: true,
+                      prefixIcon: Icon(Icons.social_distance_outlined),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return emptyFieldErrMessage;
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Center(
+                    child: SizedBox(
+                      width: 350,
+                      height: 65,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              )),
+                          backgroundColor: MaterialStateProperty.all<Color>(blackishColor),
+                        ),
+                        onPressed: addRoute,
+                        child: const Text(
+                          'ADD ROUTE',
+                          style: TextStyle(
+                              fontFamily: Fonts.fontFamily,
+                              fontSize: 28,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

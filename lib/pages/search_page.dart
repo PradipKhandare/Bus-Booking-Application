@@ -59,7 +59,7 @@ class _SearchPageState extends State<SearchPage> {
                 padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                 child: Center(
                   child: Container(
-                    height: MediaQuery.of(context).size.height / 2.4,
+                    height: MediaQuery.of(context).size.height / 2.7,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(
@@ -161,23 +161,14 @@ class _SearchPageState extends State<SearchPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                    20,
-                                  ),
-                                  color: containerBackgroundColor,
-                                ),
-                                width: 168,
-                                child: TextButton(
-                                  onPressed: _selectDate,
-                                  child: const Text(
-                                    "Date of Journey",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: Fonts.fontFamily,
-                                        fontSize: 18),
-                                  ),
+                              TextButton(
+                                onPressed: _selectDate,
+                                child: const Text(
+                                  "Date of Journey",
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontFamily: Fonts.fontFamily,
+                                      fontSize: 18),
                                 ),
                               ),
                               const SizedBox(
@@ -197,7 +188,7 @@ class _SearchPageState extends State<SearchPage> {
                           ),
                         ),
                         const SizedBox(
-                          height: 30,
+                          height: 10,
                         ),
                         Center(
                           child: SizedBox(
@@ -263,8 +254,12 @@ class _SearchPageState extends State<SearchPage> {
       Provider.of<AppDataProvider>(context, listen: false)
           .getRouteByCityFromAndCityTo(fromCity!, toCity!)
           .then((route) {
-        Navigator.pushNamed(context, routeNameSearchResultPage,
-            arguments: [route, getFormattedDate(departureDate!)]);
+            if(route != null){
+              Navigator.pushNamed(context, routeNameSearchResultPage,
+                  arguments: [route, getFormattedDate(departureDate!)]);
+            }else{
+              showMessage(context, "Could not find any route.");
+            }
       });
     }
   }

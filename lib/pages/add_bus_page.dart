@@ -43,140 +43,149 @@ class _AddBusPageState extends State<AddBusPage> {
       body: Form(
         key: _formKey,
         child: Center(
-          child: ListView(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            shrinkWrap: true,
-            children: [
-              DropdownButtonFormField<String>(
-                onChanged: (value) {
-                  setState(() {
-                    busType = value;
-                  });
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please select a Bus Type';
-                  }
-                },
-                decoration: InputDecoration(
-                  errorStyle: const TextStyle(
-                    color: Colors.white70,
-                  ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              height: MediaQuery.of(context).size.height / 2.5,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(
+                  15,
                 ),
-                isExpanded: true,
-                value: busType,
-                hint: const Text(
-                  'Select Bus Type',
-                  style: TextStyle(
-                    fontFamily: Fonts.fontFamily,
-                    color: headingColor,
-                    fontSize: 19,
-                  ),
-                ),
-                items: busTypes
-                    .map((e) => DropdownMenuItem<String>(
-                          value: e,
-                          child: Text(e),
-                        ))
-                    .toList(),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: nameController,
-                decoration: const InputDecoration(
-                  fillColor: Colors.white,
-                  hintText: 'Bus Name',
-                  hintStyle: TextStyle(
-                    fontFamily: Fonts.fontFamily,
-                    color: headingColor,
-                  ),
-                  filled: true,
-                  prefixIcon: Icon(Icons.bus_alert),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return emptyFieldErrMessage;
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              TextFormField(
-                controller: numberController,
-                decoration: const InputDecoration(
-                  fillColor: Colors.white,
-                  hintText: 'Bus Number',
-                  hintStyle: TextStyle(
-                    fontFamily: Fonts.fontFamily,
-                    color: headingColor,
-                  ),
-                  filled: true,
-                  prefixIcon: Icon(Icons.bus_alert),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return emptyFieldErrMessage;
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 7,
-              ),
-              TextFormField(
-                keyboardType: TextInputType.number,
-                controller: seatController,
-                decoration: const InputDecoration(
-                  fillColor: Colors.white,
-                  hintText: 'Total Seats',
-                  hintStyle: TextStyle(
-                    fontFamily: Fonts.fontFamily,
-                    color: headingColor,
-                  ),
-                  filled: true,
-                  prefixIcon: Icon(Icons.event_seat),
-                ),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return emptyFieldErrMessage;
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: SizedBox(
-                  width: 350,
-                  height: 65,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                        // side: BorderSide(color: Colors.red)
-                      )),
-                      backgroundColor:
-                          WidgetStateProperty.all<Color>(blackishColor),
+              child: ListView(
+                padding: const EdgeInsets.symmetric(horizontal: 40),
+                shrinkWrap: true,
+                children: [
+                  DropdownButtonFormField<String>(
+                    onChanged: (value) {
+                      setState(() {
+                        busType = value;
+                      });
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select a Bus Type';
+                      }
+                    },
+                    decoration: InputDecoration(
+                      errorStyle: const TextStyle(
+                        color: Colors.white70,
+                      ),
                     ),
-                    onPressed: addBus,
-                    child: const Text(
-                      'ADD BUS',
+                    isExpanded: true,
+                    value: busType,
+                    hint: const Text(
+                      'Select Bus Type',
                       style: TextStyle(
-                          fontFamily: Fonts.fontFamily,
-                          fontSize: 28,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                        fontFamily: Fonts.fontFamily,
+                        color: headingColor,
+                        fontSize: 19,
+                      ),
+                    ),
+                    items: busTypes
+                        .map((e) => DropdownMenuItem<String>(
+                              value: e,
+                              child: Text(e),
+                            ))
+                        .toList(),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      hintText: 'Bus Name',
+                      hintStyle: TextStyle(
+                        fontFamily: Fonts.fontFamily,
+                        color: headingColor,
+                      ),
+                      filled: true,
+                      prefixIcon: Icon(Icons.bus_alert),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return emptyFieldErrMessage;
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  TextFormField(
+                    controller: numberController,
+                    decoration: const InputDecoration(
+                      hintText: 'Bus Number',
+                      hintStyle: TextStyle(
+                        fontFamily: Fonts.fontFamily,
+                        color: headingColor,
+                      ),
+                      filled: true,
+                      prefixIcon: Icon(Icons.bus_alert),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return emptyFieldErrMessage;
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    controller: seatController,
+                    decoration: const InputDecoration(
+                      hintText: 'Total Seats',
+                      hintStyle: TextStyle(
+                        fontFamily: Fonts.fontFamily,
+                        color: headingColor,
+                      ),
+                      filled: true,
+                      prefixIcon: Icon(Icons.event_seat),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return emptyFieldErrMessage;
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                    child: SizedBox(
+                      width: 350,
+                      height: 65,
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(18.0),
+                            // side: BorderSide(color: Colors.red)
+                          )),
+                          backgroundColor:
+                              WidgetStateProperty.all<Color>(blackishColor),
+                        ),
+                        onPressed: addBus,
+                        child: const Text(
+                          'ADD BUS',
+                          style: TextStyle(
+                              fontFamily: Fonts.fontFamily,
+                              fontSize: 28,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

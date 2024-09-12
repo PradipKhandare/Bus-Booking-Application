@@ -26,7 +26,7 @@ public class Reservation {
     @JoinColumn(name = "bus_schedule_id")
     private BusSchedule busSchedule;
 
-    private Integer timestamp;
+    private Long timestamp;
     private String departureDate;
     private Integer totalSeatBooked;
     private String seatNumbers;

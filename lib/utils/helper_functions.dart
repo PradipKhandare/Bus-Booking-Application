@@ -10,7 +10,7 @@ String getFormattedDate(DateTime dt, {String pattern = 'dd/MM/yyyy'}) {
   return DateFormat(pattern).format(dt);
 }
 
-String getFormattedTime(TimeOfDay tm, {String pattern = 'HH:mm'}) {
+String getFormattedTime(TimeOfDay tm, {String pattern = 'h:mm a'}) {
   return DateFormat(pattern).format(DateTime(0,0,0,tm.hour,tm.minute));
 }
 
