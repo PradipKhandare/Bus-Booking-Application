@@ -13,25 +13,25 @@ The Bus Booking System is a comprehensive application built using Flutter for th
 
 Here are some screenshots showcasing the various features and user interface of the Bus Booking System application:
 
-### Home Screen
+### Admin Add Route Screen
 <img width="174" alt="Screenshot 2024-09-12 at 8 58 03 AM" src="https://github.com/user-attachments/assets/d7170395-10dd-4534-a6d1-95a2d041d893">
-*The home screen where users can browse and search for bus routes.*
+*The add route screen where admin can add the routes*
 
-### Browse Routes
+### Admin login screen
 <img width="173" alt="Screenshot 2024-09-12 at 8 58 26 AM" src="https://github.com/user-attachments/assets/5efc936e-1476-4963-87d4-fb7c4a15bede">
-*Browsing available bus routes and schedules.*
+*The admin login screen where admin can do login*
 
-### Seat Selection
+### admin add schedule screen
 <img width="179" alt="Screenshot 2024-09-12 at 8 58 40 AM" src="https://github.com/user-attachments/assets/41ca06f2-dbf0-473f-ab45-d7a43bf71971">
-*Selecting seats for a specific bus route.*
+*Admin can add the bus schedule.*
 
-### Booking Confirmation
+### Add bus screen
 <img width="172" alt="Screenshot 2024-09-12 at 8 58 56 AM" src="https://github.com/user-attachments/assets/213da4ae-589f-4b1f-83ad-f7dc99abe32c">
-*Booking confirmation screen showing details of the reservation.*
+*Admin can add buses from this screen*
 
-### User Profile
-![Screenshot_20240912_085342](https://github.com/user-attachments/assets/35011a37-65dd-4e2d-afe0-64b4a60a2edc)
-*User profile management section where users can view and update their information.*
+### Homepage
+<img width="172" alt="Screenshot 2024-09-12 at 8 58 56 AM" src="https://github.com/user-attachments/assets/59878573-29f3-4158-9948-a00fd7725e26">
+*The homepage where user can search bus by selecting the route*
 
 ## Getting Started
 
